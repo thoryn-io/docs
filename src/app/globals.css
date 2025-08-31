@@ -23,12 +23,6 @@
   monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #ffffff;
-    --foreground: #ededed;
-  }
-}
 html {
   font-size: 14px; /* 1rem = 14px on small screens */
 }

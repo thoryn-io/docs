@@ -2,9 +2,9 @@ import SingleColumn from "@/components/NavBar/Popovers/SingleColumn";
 import DescriptionCard from "@/components/NavBar/Cards/DescriptionCard";
 import {ArrowsRightLeftIcon, HomeIcon, ShieldCheckIcon} from "@heroicons/react/24/outline";
 
-export default function Features() {
+export default function WhoWeAre() {
     return (
-        <SingleColumn label="Features" cards={
+        <SingleColumn label="Who we are" cards={
             [
                 <DescriptionCard
                     href="/overview"
