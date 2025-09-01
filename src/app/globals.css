@@ -15,16 +15,25 @@
 
   --color-purple-25: rgb(247 245 255);
   --z-index-over: 1;
-  --font-sans: var(--font-inter), InterFallback, ui-sans-serif, system-ui,
-  sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-  "Noto Color Emoji";
+  --font-sans: Inter, InterFallback, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
 
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono",
   monospace;
 }
 
 html {
-  font-size: 14px; /* 1rem = 14px on small screens */
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  font-feature-settings: normal;
+  font-variation-settings: normal;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.font-serif {
+  font-family: Arizona, ArizonaFallback, ui-serif, Georgia, Cambria, Times New Roman, Times, serif;
 }
 
 @media (min-width: 640px) {
