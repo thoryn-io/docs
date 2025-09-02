@@ -1,4 +1,4 @@
-import {PropsWithChildren, ReactElement} from "react";
+import {PropsWithChildren} from "react";
 import {Popover, PopoverBackdrop, PopoverButton, PopoverPanel} from "@headlessui/react";
 import {AllowedCards} from "@/components/NavBar/Popovers/types";
 

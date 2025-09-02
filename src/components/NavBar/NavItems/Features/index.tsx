@@ -7,18 +7,21 @@ export default function Features() {
         <SingleColumn label="Features" cards={
             [
                 <DescriptionCard
+                    key={0}
                     href="/overview"
                     label="Overview"
                     description="Authorization you can trust, with privacy at its core."
                     icon={HomeIcon}
                 />,
                 <DescriptionCard
+                    key={1}
                     href="/security"
                     label="Security"
                     description="Privacy that puts security first."
                     icon={ShieldCheckIcon}
                 />,
                 <DescriptionCard
+                    key={2}
                     href="/kyc-kyb"
                     label="Know your Business"
                     description="Business onboarding that puts compliance first."

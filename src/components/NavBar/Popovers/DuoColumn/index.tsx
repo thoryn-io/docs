@@ -1,8 +1,5 @@
-import {PropsWithChildren, ReactElement} from "react";
+import {PropsWithChildren} from "react";
 import {Popover, PopoverBackdrop, PopoverButton, PopoverPanel} from "@headlessui/react";
-import DescriptionCard from "@/components/NavBar/Cards/DescriptionCard";
-import {HomeIcon, ShieldCheckIcon, ArrowsRightLeftIcon} from "@heroicons/react/24/outline";
-import {TextCard} from "@/components/NavBar/Cards";
 import {AllowedCards} from "@/components/NavBar/Popovers/types";
 
 

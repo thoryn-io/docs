@@ -1,8 +1,10 @@
 import Image from "next/image";
 import BasicHero from "@/components/Heros/BasicHero";
-import CallToActionSection from "@/components/Sections/CallToActionSection";
+import Header2Section from "../components/Sections/Header2Section";
 import ButtonLink from "@/components/Links/ButtonLink";
 import OutlineButtonLink from "@/components/Links/OutlineButtonLink";
+import Header3Section from "@/components/Sections/Header3Section";
+import SplitSection from "@/components/Sections/SplitSection";
 
 export default function Home() {
     return (
@@ -23,7 +25,13 @@ export default function Home() {
                             label="Create a free account"
                         />}
                 />
-                <CallToActionSection
+                <Header3Section
+                    title="Lorem ipsum dolor sit amet"
+                />
+                <SplitSection
+
+                />
+                <Header2Section
                     title="Lorem ipsum dolor sit amet consectetur adipiscing elit."
                     primaryButton={
                         <ButtonLink

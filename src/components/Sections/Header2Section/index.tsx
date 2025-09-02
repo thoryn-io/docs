@@ -1,12 +1,12 @@
 import {PropsWithChildren} from "react";
-import {CallToActionLink, SecondaryCallToActionLink} from "@/components/Heros/types";
+import {CallToActionLink} from "@/components/Heros/types";
 
 type DescriptionCardProps = {
     title: string;
     primaryButton: CallToActionLink;
 };
 
-export default function CallToActionSection({
+export default function Header2Section({
                                       title,
                                       primaryButton: PrimaryButton,
                                   }: PropsWithChildren<DescriptionCardProps>) {
