@@ -1,5 +1,5 @@
 import Navigation from "@/components/NavBar/Navigation";
-import {Features, WhoWeAre, ResourcesAndSupport, SideMenu} from "@/components/NavBar/NavItems";
+import {Features, WhoWeAre, ResourcesAndSupport} from "@/components/NavBar/NavItems";
 
 export default function Example() {
     return (
