@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 
-const repo = 'docs' // <-- change or remove
+const repo = '' // <-- change or remove
 
 const nextConfig: NextConfig = {
     output: 'export',
