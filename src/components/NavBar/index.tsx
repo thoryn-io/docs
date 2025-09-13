@@ -1,6 +1,4 @@
 import Navigation from "@/components/NavBar/Navigation";
-import {Features, WhoWeAre, ResourcesAndSupport} from "@/components/NavBar/NavItems";
-import {MenuItemSimple} from "@/components/NavBar/types";
 import {ArrowsRightLeftIcon, HomeIcon, ShieldCheckIcon, UserGroupIcon} from "@heroicons/react/24/outline";
 
 export default function NavBar() {

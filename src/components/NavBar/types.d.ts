@@ -1,4 +1,3 @@
-import {PropsWithChildren} from "react";
 
 interface NavigationProps {
     menuItems: MenuItem[];

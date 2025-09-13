@@ -1,13 +1,7 @@
-import {PropsWithChildren} from "react";
 import Image from "next/image";
 import Link from "next/link";
-import {SideMenu} from "@/components/NavBar/NavItems";
-import {NavigationProps} from "@/components/NavBar/types";
-import DescriptionCard from "../Cards/DescriptionCard";
-import {ArrowsRightLeftIcon, HomeIcon, ShieldCheckIcon} from "@heroicons/react/24/outline";
-import SingleColumn from "@/components/NavBar/Popovers/SingleColumn";
 import SubMenu from "@/components/NavBar/SubMenu";
-import {it} from "node:test";
+import SideMenu from "@/components/NavBar/NavItems/SideMenu";
 
 
 export default function Navigation({menuItems}: NavigationProps) {
