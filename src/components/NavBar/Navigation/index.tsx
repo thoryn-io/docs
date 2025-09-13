@@ -1,9 +1,16 @@
-import { PropsWithChildren } from "react";
+import {PropsWithChildren} from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {SideMenu} from "@/components/NavBar/NavItems";
+import {NavigationProps} from "@/components/NavBar/types";
+import DescriptionCard from "../Cards/DescriptionCard";
+import {ArrowsRightLeftIcon, HomeIcon, ShieldCheckIcon} from "@heroicons/react/24/outline";
+import SingleColumn from "@/components/NavBar/Popovers/SingleColumn";
+import SubMenu from "@/components/NavBar/SubMenu";
+import {it} from "node:test";
 
-export default function Navigation({ children }: PropsWithChildren) {
+
+export default function Navigation({menuItems}: NavigationProps) {
     return (
         <div className="sticky top-0 z-50 w-full bg-purple-50 px-1">
             <header>
@@ -24,7 +31,16 @@ export default function Navigation({ children }: PropsWithChildren) {
                     <div className="hidden xl:block xl:flex-grow">
                         <nav>
                             <ul className="flex flex-wrap items-center gap-x-4 gap-y-1">
-                                {children}
+                                {menuItems.map((item, index) => {
+                                    switch (item.type) {
+                                        case "simple":
+                                            return <a key={index} href={item.href}>{item.label}</a>;
+                                        case "submenu":
+                                            return <li key={index}>
+                                                <SubMenu  {...item}/>
+                                            </li>;
+                                    }
+                                })}
                             </ul>
                         </nav>
                     </div>
