@@ -1,16 +1,10 @@
-import {PropsWithChildren} from "react";
 import {Popover, PopoverBackdrop, PopoverButton, PopoverPanel} from "@headlessui/react";
 import {Bars3Icon, XMarkIcon} from "@heroicons/react/24/outline";
+import {NavigationProps} from "@/components/NavBar/types";
+import SubSideMenu from "@/components/NavBar/SubSideMenu";
 
 
-type SingleColumnProps = {
-    label: string;
-};
-
-
-export default function Menu({
-                                 label
-                             }: PropsWithChildren<SingleColumnProps>) {
+export default function Menu({menuItems}: NavigationProps) {
     return (
         <Popover
             className="flex items-center xl:hidden"
@@ -18,7 +12,7 @@ export default function Menu({
             <PopoverButton
                 as="button"
                 className="text-gray-900 outline-none hover:text-purple-500 focus-visible:text-purple-500">
-                <span className="sr-only">{label}</span>
+                <span className="sr-only">Open Menu</span>
                 <Bars3Icon className="h-7 w-7"/>
             </PopoverButton>
             <PopoverBackdrop className="z-over fixed inset-0 bg-black/15"/>
@@ -64,6 +58,21 @@ export default function Menu({
                         </PopoverButton>
 
                     </div>
+                    <nav className="relative flex h-full max-h-screen flex-grow flex-col overflow-y-auto overflow-x-hidden h-screen">
+                        <ul className="flex h-full flex-grow flex-col gap-2 overflow-y-auto overflow-x-hidden pe-4 ps-8 md:pe-8 xl:pe-16">
+                            {menuItems.map((item, index) => {
+                                switch (item.type) {
+                                    case "simple":
+                                        return <a key={index} href={item.href}>{item.label}</a>;
+                                    case "submenu":
+                                        return <li key={index}>
+                                            <SubSideMenu  {...item}/>
+                                        </li>;
+                                }
+                            })}
+
+                        </ul>
+                    </nav>
                 </div>
 
             </PopoverPanel>

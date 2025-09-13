@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import SubMenu from "@/components/NavBar/SubMenu";
 import SideMenu from "@/components/NavBar/NavItems/SideMenu";
+import {NavigationProps} from "@/components/NavBar/types";
 
 
 export default function Navigation({menuItems}: NavigationProps) {
@@ -64,7 +65,7 @@ export default function Navigation({menuItems}: NavigationProps) {
                                                             className="inline-flex shrink-0 items-center justify-center rounded-full text-center font-semibold outline-none transition-[color,background-color,border-color,box-shadow] duration-150 ease-out text-purple-500 ring-purple-800 ring-offset-white hocus:bg-purple-700 hocus:text-white bg-transparent no-underline ring-offset-2 focus-visible:ring motion-safe:active:translate-y-px py-1 px-3 text-sm gap-1 max-sm:w-full">Sign
                             in</a></div>
                     </div>
-                    <SideMenu/>
+                    <SideMenu menuItems={menuItems}/>
                 </div>
             </header>
 

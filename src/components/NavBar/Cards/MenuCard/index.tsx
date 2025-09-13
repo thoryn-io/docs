@@ -1,4 +1,5 @@
 import {DescriptionCard, HeaderCard, TextCard} from "@/components/NavBar/Cards";
+import {SubMenuItem} from "@/components/NavBar/types";
 
 export default function MenuCard({
                                      href,

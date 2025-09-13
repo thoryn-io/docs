@@ -10,7 +10,7 @@ interface MenuItemSimple extends BaseMenuItem{
     href: string
     type: "simple";
 }
-interface MenuItemSubMenu extends BaseMenuItem{
+export interface MenuItemSubMenu extends BaseMenuItem{
     subMenu: SubMenu
     type: "submenu";
 }
