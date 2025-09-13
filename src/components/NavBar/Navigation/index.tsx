@@ -1,9 +1,11 @@
-import { PropsWithChildren } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import {SideMenu} from "@/components/NavBar/NavItems";
+import SubMenu from "@/components/NavBar/SubMenu";
+import SideMenu from "@/components/NavBar/NavItems/SideMenu";
+import {NavigationProps} from "@/components/NavBar/types";
 
-export default function Navigation({ children }: PropsWithChildren) {
+
+export default function Navigation({menuItems}: NavigationProps) {
     return (
         <div className="sticky top-0 z-50 w-full bg-purple-50 px-1">
             <header>
@@ -24,7 +26,16 @@ export default function Navigation({ children }: PropsWithChildren) {
                     <div className="hidden xl:block xl:flex-grow">
                         <nav>
                             <ul className="flex flex-wrap items-center gap-x-4 gap-y-1">
-                                {children}
+                                {menuItems.map((item, index) => {
+                                    switch (item.type) {
+                                        case "simple":
+                                            return <a key={index} href={item.href}>{item.label}</a>;
+                                        case "submenu":
+                                            return <li key={index}>
+                                                <SubMenu  {...item}/>
+                                            </li>;
+                                    }
+                                })}
                             </ul>
                         </nav>
                     </div>
@@ -54,7 +65,7 @@ export default function Navigation({ children }: PropsWithChildren) {
                                                             className="inline-flex shrink-0 items-center justify-center rounded-full text-center font-semibold outline-none transition-[color,background-color,border-color,box-shadow] duration-150 ease-out text-purple-500 ring-purple-800 ring-offset-white hocus:bg-purple-700 hocus:text-white bg-transparent no-underline ring-offset-2 focus-visible:ring motion-safe:active:translate-y-px py-1 px-3 text-sm gap-1 max-sm:w-full">Sign
                             in</a></div>
                     </div>
-                    <SideMenu/>
+                    <SideMenu menuItems={menuItems}/>
                 </div>
             </header>
 

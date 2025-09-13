@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Example from "@/components/NavBar";
+import NavBar from "@/components/NavBar";
 import { Inter } from "next/font/google";
 
 // This generates a CSS variable (--font-inter)
@@ -35,7 +35,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Example></Example>
+        <NavBar></NavBar>
         {children}
       </body>
     </html>
