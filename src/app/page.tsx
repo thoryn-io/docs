@@ -12,8 +12,8 @@ export default function Home() {
             <main>
 
                 <BasicHero
-                    title="Lorem ipsum dolor sit amet consectetur adipiscing elit."
-                    subTitle="Lorem ipsum dolor sit amet consectetur adipiscing elit quisque."
+                    title="Worry Free and modular approach to IAM & KYB"
+                    subTitle="Solving IAM can be a hassle. Lots of detail and regulation compliance to deal with. Get the battle tested solution."
                     primaryButton={
                         <ButtonLink
                             href="#"
@@ -26,7 +26,7 @@ export default function Home() {
                         />}
                 />
                 <Header3Section
-                    title="Lorem ipsum dolor sit amet"
+                    title="Worry-Free, Modular IAM & KYB"
                 />
                 <SplitSection
 

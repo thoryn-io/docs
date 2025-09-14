@@ -1,7 +1,8 @@
 "use client";
 
 import {useEffect, useRef} from "react";
-import {Dialog, DialogBackdrop, DialogPanel} from "@headlessui/react";
+import {Dialog, DialogBackdrop, DialogPanel, PopoverButton} from "@headlessui/react";
+import {XMarkIcon} from "@heroicons/react/24/outline";
 
 type DrawerProps = {
     open: boolean;
@@ -63,15 +64,15 @@ export default function MenuDrawer({
                 >
                     {/* Header sticks; content below scrolls */}
                     <header className="flex h-12 items-center justify-between border-b border-gray-200 pe-4 ps-8 md:pe-8 xl:pe-16">
-
                         <h2 className="text-lg font-semibold">{title}</h2>
                         <button
                             ref={closeBtnRef}
                             onClick={() => onClose(false)}
-                            className="rounded p-2 hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500"
+                            className="block text-gray-900 outline-none hover:text-purple-500 focus-visible:text-purple-500"
                             aria-label="Close menu"
                         >
-                            ✕
+                            <span className="sr-only">Close menu</span>
+                            <XMarkIcon className="h-7 w-7"/>
                         </button>
                     </header>
 
