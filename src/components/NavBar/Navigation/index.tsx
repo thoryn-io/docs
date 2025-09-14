@@ -3,6 +3,7 @@ import Link from "next/link";
 import SubMenu from "@/components/NavBar/SubMenu";
 import SideMenu from "@/components/NavBar/NavItems/SideMenu";
 import {NavigationProps} from "@/components/NavBar/types";
+import SubSideMenu from "@/components/NavBar/SubSideMenu";
 
 
 export default function Navigation({menuItems}: NavigationProps) {
@@ -65,7 +66,21 @@ export default function Navigation({menuItems}: NavigationProps) {
                                                             className="inline-flex shrink-0 items-center justify-center rounded-full text-center font-semibold outline-none transition-[color,background-color,border-color,box-shadow] duration-150 ease-out text-purple-500 ring-purple-800 ring-offset-white hocus:bg-purple-700 hocus:text-white bg-transparent no-underline ring-offset-2 focus-visible:ring motion-safe:active:translate-y-px py-1 px-3 text-sm gap-1 max-sm:w-full">Sign
                             in</a></div>
                     </div>
-                    <SideMenu menuItems={menuItems}/>
+                    <SideMenu>
+                        <ul className="flex h-full flex-grow flex-col gap-2 overflow-y-auto overflow-x-hidden pe-4 ps-8 md:pe-8 xl:pe-16">
+                            {menuItems.map((item, index) => {
+                                switch (item.type) {
+                                    case "simple":
+                                        return <a key={index} href={item.href}>{item.label}</a>;
+                                    case "submenu":
+                                        return <li key={index}>
+                                            <SubSideMenu  {...item}/>
+                                        </li>;
+                                }
+                            })}
+
+                        </ul>
+                    </SideMenu>
                 </div>
             </header>
 

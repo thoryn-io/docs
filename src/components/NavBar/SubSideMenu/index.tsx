@@ -1,90 +1,45 @@
-import {MenuItemSubMenu} from "@/components/NavBar/types";
+import {MenuItemSubMenu, SubMenuPlane} from "@/components/NavBar/types";
 import MenuCard from "../Cards/MenuCard";
-import SingleColumnMenu from "@/components/NavBar/Popovers/SingleColumnMenu";
-import TrioColumnMenu from "@/components/NavBar/Popovers/TrioColumnMenu";
-
+import DrawerDisclosure from "@/components/NavBar/Drawer/DrawerDisclosure";
 
 export default function SubSideMenu({
                                         label,
                                         subMenu
                                     }: MenuItemSubMenu) {
+    const renderMenu = (menu : SubMenuPlane) => {
+        return menu.items.map((item, index) => (
+            <MenuCard
+                key={index}
+                href={item.href}
+                label={item.label}
+                description={item.description}
+                icon={item.icon}
+            />
+        ))
+    };
+
     function renderSubMenu() {
         switch (subMenu.type) {
             case "single":
                 return (
-                    <SingleColumnMenu
-                        label={label}
-                        cards={subMenu.plane.items.map((item, index) => (
-                            <MenuCard
-                                key={index}
-                                href={item.href}
-                                label={item.label}
-                                description={item.description}
-                                icon={item.icon}
-                            />
-                        ))}
-                    />
+                    <DrawerDisclosure label={label}>
+                        {renderMenu(subMenu.plane)}
+                    </DrawerDisclosure>
                 );
             case "duo":
-                return <SingleColumnMenu
-                    label={label}
-                    cards={[
-                        ...subMenu.left.items.map((item, index) => (
-                            <MenuCard
-                                key={index}
-                                href={item.href}
-                                label={item.label}
-                                description={item.description}
-                                icon={item.icon}
-                            />
-                        )),
-                        ...subMenu.right.items.map((item, index) => (
-                            <MenuCard
-                                key={index}
-                                href={item.href}
-                                label={item.label}
-                                description={item.description}
-                                icon={item.icon}
-                            />
-                        ))
-                    ]}
-
-                />;
+                return <DrawerDisclosure label={label}>
+                    {renderMenu(subMenu.left)}
+                    <hr className="m-4 xl:mx-0 xl:my-6 xl:hidden"/>
+                    {renderMenu(subMenu.right)}
+                </DrawerDisclosure>;
             case "trio":
-                return <TrioColumnMenu
-                    label={label}
-                    cardsLeft={[
-                        ...subMenu.left.items.map((item, index) => (
-                            <MenuCard
-                                key={index}
-                                href={item.href}
-                                label={item.label}
-                                description={item.description}
-                                icon={item.icon}
-                            />
-                        )),
-                    ]}
-                    cardsCenter={[...subMenu.center.items.map((item, index) => (
-                        <MenuCard
-                            key={index}
-                            href={item.href}
-                            label={item.label}
-                            description={item.description}
-                            icon={item.icon}
-                        />
-                    ))]}
-                    cardsRight={[...subMenu.right.items.map((item, index) => (
-                        <MenuCard
-                            key={index}
-                            href={item.href}
-                            label={item.label}
-                            description={item.description}
-                            icon={item.icon}
-                        />
-                    ))
-                    ]}
-
-                />;
+                return <DrawerDisclosure label={label}>
+                    {renderMenu(subMenu.left)}
+                    <hr className="m-4 xl:mx-0 xl:my-6 xl:hidden"/>
+                    {renderMenu(subMenu.center)}
+                    <hr className="m-4 xl:mx-0 xl:my-6 xl:hidden"/>
+                    {renderMenu(subMenu.right)}
+                </DrawerDisclosure>;
             default:
                 return null;
         }

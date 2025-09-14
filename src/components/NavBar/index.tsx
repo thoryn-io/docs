@@ -91,20 +91,20 @@ export default function NavBar() {
                                     label: "Help"
                                 },
                                 {
-                                    href:"/switch",
-                                    label:"Switch to Thoryn",
-                                    description:"Move to Thoryn in just a few clicks with Easy Switch."
+                                    href: "/switch",
+                                    label: "Switch to Thoryn",
+                                    description: "Move to Thoryn in just a few clicks with Easy Switch."
                                 },
                                 {
-                                    href:"/help-support",
-                                    label:"Help and support",
-                                    description:"Guides and customer support for Thorwyn products."
+                                    href: "/help-support",
+                                    label: "Help and support",
+                                    description: "Guides and customer support for Thorwyn products."
 
                                 },
                                 {
-                                    href:"/help-support",
-                                    label:"Help and support",
-                                    description:"Guides and customer support for Thorwyn products."
+                                    href: "/help-support",
+                                    label: "Help and support",
+                                    description: "Guides and customer support for Thorwyn products."
                                 }
                             ]
                         },
@@ -114,21 +114,21 @@ export default function NavBar() {
                                     label: "Blog"
                                 },
                                 {
-                                    href:"/news",
-                                    label:"News",
-                                    description:"Latest news on privacy and the Internet."
+                                    href: "/news",
+                                    label: "News",
+                                    description: "Latest news on privacy and the Internet."
                                 },
                                 {
-                                    href:"/product-updates",
-                                    label:"Product updates",
+                                    href: "/product-updates",
+                                    label: "Product updates",
                                 },
                                 {
-                                    href:"/thorwyn-news",
-                                    label:"Thorwyn news"
+                                    href: "/thorwyn-news",
+                                    label: "Thorwyn news"
                                 },
                                 {
-                                    href:"/privacy-guides",
-                                    label:"Privacy guides"
+                                    href: "/privacy-guides",
+                                    label: "Privacy guides"
                                 }
                             ]
                         },
@@ -139,32 +139,30 @@ export default function NavBar() {
                                     label: "Download the apps",
                                 },
                                 {
-                                    href:"/product-updates",
-                                    label:"Product updates"
+                                    href: "/product-updates",
+                                    label: "Product updates"
                                 },
                                 {
-                                    href:"/product-updates",
-                                    label:"Product updates"
+                                    href: "/product-updates",
+                                    label: "Product updates"
                                 },
                                 {
-                                    href:"/product-updates",
-                                    label:"Product updates"
+                                    href: "/product-updates",
+                                    label: "Product updates"
                                 },
                                 {
-                                    href:"/product-updates",
-                                    label:"Product updates"
+                                    href: "/product-updates",
+                                    label: "Product updates"
                                 },
                                 {
-                                    href:"/product-updates",
-                                    label:"Product updates"
+                                    href: "/product-updates",
+                                    label: "Product updates"
                                 }
                             ]
                         }
                     }
                 }
             ]
-
-        }>
-        </Navigation>
+        }/>
     )
 }

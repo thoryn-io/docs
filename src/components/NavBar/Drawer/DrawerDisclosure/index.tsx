@@ -6,14 +6,12 @@ import {
 } from "@headlessui/react";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 import { ChevronRightIcon } from "@heroicons/react/16/solid";
-import { AllowedCards } from "@/components/NavBar/Popovers/types";
 
 type SingleColumnProps = {
     label: string;
-    cards: AllowedCards[];
 };
 
-export default function SingleColumnMenu({ label, cards }: PropsWithChildren<SingleColumnProps>) {
+export default function DrawerDisclosure({ label, children }: PropsWithChildren<SingleColumnProps>) {
     return (
         <Disclosure>
             <DisclosureButton
@@ -33,10 +31,12 @@ export default function SingleColumnMenu({ label, cards }: PropsWithChildren<Sin
           origin-right transition duration-200 ease-out
           data-[closed]:translate-x-112
           p-0
+          mt-12
+          overflow-y-auto overscroll-contain [-webkit-overflow-scrolling:touch]
         "
             >
                 {/* Header stays visible */}
-                <div className="sticky top-0 z-10 border-b border-gray-200 bg-white p-4 pl-8">
+                <div className="top-0 z-10 bg-white p-4 pl-8">
                     <DisclosureButton
                         as="button"
                         className="inline-flex items-center gap-2 text-lg text-purple-800"
@@ -49,14 +49,12 @@ export default function SingleColumnMenu({ label, cards }: PropsWithChildren<Sin
                 {/* Scrollable content area */}
                 <div
                     className="
-            flex-1 overflow-y-auto overscroll-contain [-webkit-overflow-scrolling:touch]
+            flex-1
             p-4 pl-8
           "
                 >
                     <div className="xl:grid xl:grid-cols-[3fr_1fr] xl:gap-12">
-                        {cards.map((card, i) => (
-                            <div key={i}>{card}</div>
-                        ))}
+                        {children}
                     </div>
                 </div>
             </DisclosurePanel>
