@@ -3,7 +3,7 @@ import {CallToActionLink} from "@/components/Heros/types";
 
 type DescriptionCardProps = {
     title: string;
-    primaryButton: CallToActionLink;
+    primaryButton?: CallToActionLink;
 };
 
 export default function Header2Section({

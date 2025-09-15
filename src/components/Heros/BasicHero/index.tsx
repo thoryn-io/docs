@@ -4,8 +4,8 @@ import {CallToActionLink, SecondaryCallToActionLink} from "@/components/Heros/ty
 type DescriptionCardProps = {
     title: string;
     subTitle: string;
-    primaryButton: CallToActionLink;
-    secondaryButton: SecondaryCallToActionLink;
+    primaryButton?: CallToActionLink;
+    secondaryButton?: SecondaryCallToActionLink;
 };
 
 export default function BasicHero({
@@ -23,9 +23,11 @@ export default function BasicHero({
                     <div className="">
                         <div className="flex flex-col items-stretch gap-y-8 items-center text-center">
                             <div className="space-y-2"><h1
-                                className="lg:text-7xl text-5xl text-purple-800 font-serif">{title}</h1></div>
+                                className="lg:text-7xl text-5xl text-purple-800 font-serif">{title}</h1>
+                            </div>
                             <div className="lg:text-2xl text-base text-purple-800 font-sans rich-text">
-                                <p>{subTitle}</p></div>
+                                {subTitle}
+                            </div>
 
                             <div className="space-y-3">
                                 <div className="flex flex-wrap gap-2 justify-center">

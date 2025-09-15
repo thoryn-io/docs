@@ -4,7 +4,7 @@ import ButtonLink from "@/components/Links/ButtonLink";
 import OutlineButtonLink from "@/components/Links/OutlineButtonLink";
 import Header3Section from "@/components/Sections/Header3Section";
 import SplitSection from "@/components/Sections/SplitSection";
-import ImageSection from "@/components/Sections/ImageSection";
+import ImageContentSection from "../components/Sections/ImageContentSection";
 import ImageSectionDark from "@/components/Sections/ImageSectionDark";
 import EcoSystemSection from "@/components/Sections/EcoSystemSection";
 import ProductSection from "@/components/Sections/ProductSection";
@@ -120,7 +120,7 @@ export default function Home() {
                             label="Book a demo"
                         />}
                 />
-                <ImageSection
+                <ImageContentSection
                     heading="Effortless Compliance, Built for Growth"
                     content={<>
                         <p>With our solution, you no longer need to wrestle with the constant pressure of
