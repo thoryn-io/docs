@@ -1,9 +1,9 @@
 "use client";
 import {PropsWithChildren, useState} from "react";
-import MenuDrawer from "../../Drawer/DrawerMenu";
+import DrawerMenu from "../Drawer/DrawerMenu";
 import {Bars3Icon} from "@heroicons/react/24/outline";
 
-export default function SideMenu({children}: PropsWithChildren) {
+export default function Drawer({children}: PropsWithChildren) {
     const [open, setOpen] = useState(false);
     return (
         <>
@@ -13,11 +13,11 @@ export default function SideMenu({children}: PropsWithChildren) {
                 <Bars3Icon className="h-7 w-7"/>
             </button>
 
-            <MenuDrawer open={open} onClose={setOpen} side="right" title="Navigation">
+            <DrawerMenu open={open} onClose={setOpen} side="right" title="Navigation">
                 <nav className="space-y-3">
                     {children}
                 </nav>
-            </MenuDrawer>
+            </DrawerMenu>
         </>
     )
 }

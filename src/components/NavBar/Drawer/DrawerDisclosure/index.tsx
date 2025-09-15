@@ -26,7 +26,7 @@ export default function DrawerDisclosure({ label, children }: PropsWithChildren<
                 transition
                 // Drawer shell (right side), full height, flex column
                 className="
-          fixed inset-y-0 right-0 z-60 w-112 max-w-md bg-white
+          fixed inset-y-0 right-0 z-60 w-full max-w-112 bg-white
           flex flex-col
           origin-right transition duration-200 ease-out
           data-[closed]:translate-x-112

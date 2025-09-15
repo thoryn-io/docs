@@ -1,8 +1,8 @@
 import {MenuItemSubMenu, SubMenuPlane} from "@/components/NavBar/types";
-import MenuCard from "../Cards/MenuCard";
+import MenuCard from "../../Cards/MenuCard";
 import DrawerDisclosure from "@/components/NavBar/Drawer/DrawerDisclosure";
 
-export default function SubSideMenu({
+export default function DrawerSubMenu({
                                         label,
                                         subMenu
                                     }: MenuItemSubMenu) {

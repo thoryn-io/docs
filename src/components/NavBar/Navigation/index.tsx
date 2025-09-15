@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import SubMenu from "@/components/NavBar/SubMenu";
-import SideMenu from "@/components/NavBar/NavItems/SideMenu";
+import Drawer from "@/components/NavBar/Drawer";
 import {NavigationProps} from "@/components/NavBar/types";
-import SubSideMenu from "@/components/NavBar/SubSideMenu";
+import SubMenu from "@/components/NavBar/SubMenu";
+import DrawerSubMenu from "@/components/NavBar/Drawer/DrawerSubMenu";
 
 
 export default function Navigation({menuItems}: NavigationProps) {
@@ -58,7 +58,7 @@ export default function Navigation({menuItems}: NavigationProps) {
                         <span
                             className="h-auto w-0 flex-none border-r border-purple-200 max-[88em]:hidden my-1 self-stretch"></span>
                     </div>
-                    <SideMenu>
+                    <Drawer>
                         <ul className="flex h-full flex-grow flex-col gap-2 overflow-y-auto overflow-x-hidden pe-4 ps-8 md:pe-8 xl:pe-16">
                             {menuItems.map((item, index) => {
                                 switch (item.type) {
@@ -66,13 +66,13 @@ export default function Navigation({menuItems}: NavigationProps) {
                                         return <a key={index} href={item.href}>{item.label}</a>;
                                     case "submenu":
                                         return <li key={index}>
-                                            <SubSideMenu  {...item}/>
+                                            <DrawerSubMenu  {...item}/>
                                         </li>;
                                 }
                             })}
 
                         </ul>
-                    </SideMenu>
+                    </Drawer>
                 </div>
             </header>
 

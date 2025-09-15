@@ -12,7 +12,7 @@ type DrawerProps = {
     children: React.ReactNode;
 };
 
-export default function MenuDrawer({
+export default function DrawerMenu({
                                        open,
                                        onClose,
                                        side = "right",
@@ -59,6 +59,7 @@ export default function MenuDrawer({
                     className={[
                         "h-full w-full max-w-md bg-white shadow-xl outline-none",
                         "flex flex-col transition-transform duration-300",
+                        "w-full max-w-md w-112",
                         slideClass,
                     ].join(" ")}
                 >
