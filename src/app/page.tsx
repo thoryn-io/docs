@@ -5,6 +5,7 @@ import OutlineButtonLink from "@/components/Links/OutlineButtonLink";
 import Header3Section from "@/components/Sections/Header3Section";
 import SplitSection from "@/components/Sections/SplitSection";
 import ImageSection from "@/components/Sections/ImageSection";
+import ImageSectionDark from "@/components/Sections/ImageSectionDark";
 
 export default function Home() {
     return (
@@ -59,6 +60,28 @@ export default function Home() {
                         />}
                 />
                 <ImageSection
+                    heading="Effortless Compliance, Built for Growth"
+                    content={<>
+                        <p>With our solution, you no longer need to wrestle with the constant pressure of
+                            compliance or the complexity of ever-changing regulations. We make compliance
+                            effortless and keep your business future-proof, so you can focus on delivering value
+                            to your customers. Our modular, plug-and-play architecture ensures you can scale
+                            seamlessly, adding or adjusting components as your needs evolve without disrupting
+                            your existing systems.
+                        </p>
+                        <p>
+                            Security is built in from the start, protecting both your users and your business with
+                            battle-tested practices that have been proven in demanding environments. While we handle the
+                            heavy lifting of IAM and KYB behind the scenes, you stay free to concentrate on what matters
+                            most — driving growth and building trust.
+                        </p>
+                    </>}
+                    imageURL="/850x750.png"
+                    cta={
+                        {href: "", text: "Contact us"}
+                    }
+                />
+                <ImageSectionDark
                     heading="Effortless Compliance, Built for Growth"
                     content={<>
                         <p>With our solution, you no longer need to wrestle with the constant pressure of
