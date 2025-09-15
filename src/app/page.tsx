@@ -7,6 +7,7 @@ import SplitSection from "@/components/Sections/SplitSection";
 import ImageSection from "@/components/Sections/ImageSection";
 import ImageSectionDark from "@/components/Sections/ImageSectionDark";
 import EcoSystemSection from "@/components/Sections/EcoSystemSection";
+import ProductSection from "@/components/Sections/ProductSection";
 
 export default function Home() {
     return (
@@ -75,6 +76,42 @@ export default function Home() {
                             your reputation. All without the unnecessary overhead of doing it yourself.</p>
                     </>}
                 />
+                <ProductSection items={[
+                    {
+                        header: "Oauth-hub",
+                        text: "OAuth Hub: Simple, secure, compliant access",
+                        iconHref: "/36x36.png",
+                        imageHref: "/1000x1200.png",
+                        href: "/oauth"
+                    },
+                    {
+                        header: "SAML-hub",
+                        text: "SAML Hub: Seamless, secure, and compliant federation",
+                        iconHref: "/36x36.png",
+                        imageHref: "/1000x1200.png",
+                        href: "/saml"
+                    },
+                    {
+                        header: "IdP",
+                        text: "IdP: Your trusted identity provider for secure, compliant access",
+                        iconHref: "/36x36.png",
+                        imageHref: "/1000x1200.png",
+                        href: "/idp"
+                    },
+                    {
+                        header: "KYC/KYB",
+                        text: "KYC/KYB: Fast, compliant verification for users and businesses",
+                        iconHref: "/36x36.png",
+                        imageHref: "/1000x1200.png",
+                        href: "/kyc-kyb"
+                    },
+                    {
+                        header: "Login FE",
+                        text: "Login FE: A seamless, secure front-end experience for user authentication",
+                        iconHref: "/36x36.png",
+                        imageHref: "/1000x1200.png",
+                        href: "/login-fe"
+                    }]}/>
                 <Header2Section
                     title="Stop wasting time reinventing IAM & KYB. Let us show you how simple, secure, and scalable it can be."
                     primaryButton={
