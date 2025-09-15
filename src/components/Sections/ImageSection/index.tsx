@@ -1,12 +1,10 @@
 import Image from "next/image";
 
 type ImageSectionProps = {
-    heading: string,
     imageURL: string;
 };
 
 export default function ImageSection({
-                                         heading,
                                          imageURL,
                                      }: ImageSectionProps) {
     return (

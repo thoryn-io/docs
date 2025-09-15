@@ -48,13 +48,13 @@ export default function NavBar() {
                                     description: "Thoryn stands for privacy. Always has aways been."
                                 },
                                 {
-                                    href: "/team",
+                                    href: "/about/team",
                                     label: "Team",
                                     description: "Meet the people building a better internet."
 
                                 },
                                 {
-                                    href: "/impact",
+                                    href: "/about/impact",
                                     label: "Impact",
                                     description: "Defending freedom through tech is why we exist."
                                 }
@@ -67,12 +67,12 @@ export default function NavBar() {
                                     icon: UserGroupIcon
                                 },
                                 {
-                                    href: "/community",
+                                    href: "/about/community",
                                     label: "Community",
                                     description: "Join the fight to make the internet a better place."
                                 },
                                 {
-                                    href: "/opensource",
+                                    href: "/about/opensource",
                                     label: "Open source",
                                     description: "Everyone is welcome to inspect our code. We are open."
                                 }
