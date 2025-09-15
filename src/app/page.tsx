@@ -6,11 +6,35 @@ import Header3Section from "@/components/Sections/Header3Section";
 import SplitSection from "@/components/Sections/SplitSection";
 import ImageSection from "@/components/Sections/ImageSection";
 import ImageSectionDark from "@/components/Sections/ImageSectionDark";
+import EcoSystemSection from "@/components/Sections/EcoSystemSection";
 
 export default function Home() {
     return (
         <>
             <main>
+                <EcoSystemSection items={
+                    [
+                        {
+                            text: "Oauth-hub",
+                            imageHref: "/32x32.png"
+                        },
+                        {
+                            text: "SAML-hub",
+                            imageHref: "/32x32.png"
+                        },
+                        {
+                            text: "IdP",
+                            imageHref: "/32x32.png"
+                        },
+                        {
+                            text: "KYC/KYB",
+                            imageHref: "/32x32.png"
+                        },
+                        {
+                            text: "Login FE",
+                            imageHref: "/32x32.png"
+                        },
+                    ]}/>
                 <BasicHero
                     title="Worry Free and modular approach to IAM & KYB"
                     subTitle="Solving IAM can be a hassle. Lots of detail and regulation compliance to deal with. Get the battle tested solution."

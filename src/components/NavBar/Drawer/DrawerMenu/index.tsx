@@ -1,7 +1,7 @@
 "use client";
 
 import {useEffect, useRef} from "react";
-import {Dialog, DialogBackdrop, DialogPanel, PopoverButton} from "@headlessui/react";
+import {Dialog, DialogBackdrop, DialogPanel} from "@headlessui/react";
 import {XMarkIcon} from "@heroicons/react/24/outline";
 
 type DrawerProps = {
