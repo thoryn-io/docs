@@ -19,7 +19,7 @@ export default function ProductSection({items}: ProductSectionProps) {
                 <div className="max-w-8xl mx-auto">
                     <div className="grid gap-8 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
                         {items.map((item, index) => {
-                            return <div key={index} className="overflow-hidden rounded-3xl bg-gray-75 relative group"
+                            return <div key={index} className="overflow-hidden rounded-3xl bg-purple-50 relative group"
                                         data-showmore-item="">
                                 <div className="absolute inset-0">
                                     <Image
