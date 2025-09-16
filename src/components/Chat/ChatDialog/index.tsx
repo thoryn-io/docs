@@ -16,8 +16,6 @@ export default function ChatDialog({
                                        open,
                                        onClose,
                                        side = "right",
-                                       title = "Menu",
-                                       children,
                                    }: DrawerProps) {
     const closeBtnRef = useRef<HTMLButtonElement>(null);
 
