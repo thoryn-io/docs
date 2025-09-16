@@ -1,5 +1,5 @@
 import Navigation from "@/components/NavBar/Navigation";
-import {ArrowsRightLeftIcon, HomeIcon, ShieldCheckIcon, UserGroupIcon} from "@heroicons/react/24/outline";
+import {UserGroupIcon} from "@heroicons/react/24/outline";
 
 export default function NavBar() {
     return (
