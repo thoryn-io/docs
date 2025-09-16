@@ -1,33 +1,20 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { Subscribers } from "../slack/events";
 
-export const config = { api: { bodyParser: false } } as const; // streaming
-
-type Listener = (payload: unknown) => void;
-
-function getSubscriberSet(sessionId: string): Set<Listener> {
-    let set = Subscribers.get(sessionId);
-    if (!set) {
-        set = new Set<Listener>();
-        Subscribers.set(sessionId, set);
-    }
-    return set;
-}
-
-export default async function handler(
-    req: NextApiRequest,
-    res: NextApiResponse
-): Promise<void> {
+export const config = { api: { bodyParser: false } }; // SSE is streaming, no parsing
+type ChatMessage = {
+    from: "agent" | "visitor";
+    text?: string;
+    ts?: string;
+};
+export default async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void> {
     if (req.method !== "GET") {
         res.setHeader("Allow", "GET");
         res.status(405).end("Method Not Allowed");
         return;
     }
 
-    const sessionIdParam = req.query.sessionId;
-    const sessionId =
-        typeof sessionIdParam === "string" ? sessionIdParam : Array.isArray(sessionIdParam) ? sessionIdParam[0] : "";
-
+    const sessionId = (req.query.sessionId as string) || "";
     if (!sessionId) {
         res.status(400).end("Missing sessionId");
         return;
@@ -41,33 +28,19 @@ export default async function handler(
         "X-Accel-Buffering": "no",
     });
 
-    const send: Listener = (payload: unknown) => {
-        // stringify safely
-        let data = "";
-        try {
-            data = JSON.stringify(payload ?? {});
-        } catch {
-            data = JSON.stringify({ error: "non-serializable payload" });
-        }
-        res.write(`data: ${data}\n\n`);
+
+    const send = (payload: ChatMessage): void => {
+        res.write(`data: ${JSON.stringify(payload)}\n\n`);
     };
+    if (!Subscribers.has(sessionId)) Subscribers.set(sessionId, new Set());
+    Subscribers.get(sessionId)!.add(send);
 
-    const subs = getSubscriberSet(sessionId);
-    subs.add(send);
+    // heartbeat
+    const ping = setInterval(() => res.write(":\n\n"), 15000);
 
-    // heartbeat to keep the connection alive (some proxies time out otherwise)
-    const ping = setInterval(() => {
-        res.write(":\n\n");
-    }, 15_000);
-
-    const cleanup = () => {
+    req.on("close", () => {
         clearInterval(ping);
-        subs.delete(send);
-        // End only if not already finished
-        if (!res.writableEnded) res.end();
-    };
-
-    req.on("close", cleanup);
-    req.on("aborted", cleanup);
-    req.on("error", cleanup);
+        Subscribers.get(sessionId)?.delete(send);
+        res.end();
+    });
 }
