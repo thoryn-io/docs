@@ -6,30 +6,46 @@ export default function NavBar() {
         <Navigation menuItems={
             [
                 {
-                    label: "Features",
+                    label: "Products",
                     type: "submenu",
                     subMenu: {
-                        type: "single",
-                        plane: {
+                        type: "duo",
+                        left: {
                             items: [
                                 {
-                                    href: "/overview",
-                                    label: "Overview",
-                                    description: "Authorization you can trust, with privacy at its core.",
-                                    icon: HomeIcon
+                                    label: "Oauth-hub",
+                                    description: "Simple, secure, compliant access",
+                                    imageHref: "/36x36.png",
+                                    href: "/oauth"
                                 },
                                 {
-                                    href: "/security",
-                                    label: "Security",
-                                    description: "Privacy that puts security first.",
-                                    icon: ShieldCheckIcon
+                                    label: "SAML-hub",
+                                    description: "Seamless, secure, and compliant federation",
+                                    imageHref: "/36x36.png",
+                                    href: "/saml"
+                                },
+                                {
+                                    label: "IdP",
+                                    description: "Your trusted identity provider for secure, compliant access",
+                                    imageHref: "/36x36.png",
+                                    href: "/idp"
+                                }
+                            ]
+                        },
 
+                        right: {
+                            items: [
+                                {
+                                    label: "KYC/KYB",
+                                    description: "Fast, compliant verification for users and businesses",
+                                    imageHref: "/36x36.png",
+                                    href: "/kyc-kyb"
                                 },
                                 {
-                                    href: "/kyc-kyb",
-                                    label: "Know your Business",
-                                    description: "Business onboarding that puts compliance first.",
-                                    icon: ArrowsRightLeftIcon
+                                    label: "Login FE",
+                                    description: "A seamless, secure front-end experience for user authentication",
+                                    imageHref: "/36x36.png",
+                                    href: "/login-fe"
                                 }
                             ]
                         }
@@ -65,16 +81,6 @@ export default function NavBar() {
                                 {
                                     description: "We've always been guided by the Thoryn community.",
                                     icon: UserGroupIcon
-                                },
-                                {
-                                    href: "/about/community",
-                                    label: "Community",
-                                    description: "Join the fight to make the internet a better place."
-                                },
-                                {
-                                    href: "/about/opensource",
-                                    label: "Open source",
-                                    description: "Everyone is welcome to inspect our code. We are open."
                                 }
                             ]
                         }

@@ -45,6 +45,7 @@ interface SubMenuItem {
     label?: string,
     description?: string,
     href?: string,
+    imageHref?: string,
 }
 
 interface SubMenuPlane {
