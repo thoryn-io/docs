@@ -10,90 +10,89 @@ export default function Home() {
         <>
             <main>
                 <BasicHeroWithoutImage
-                    title="OAuth Hub Secure access, simplified"
-                    subTitle="OAuth Hub is your identity backbone — the central place where all your authentication and authorization flows come together. Built on battle-tested standards like OAuth2 and OpenID Connect, it makes managing access across apps, APIs, and partners seamless, compliant, and worry-free."
+                    title="Login FE — Custom IdP Frontend, your brand first"
+                    subTitle="A fully customizable, secure front-end for your Identity Provider. Ship beautiful, on-brand login, registration, and recovery flows without rebuilding core auth. Built for accessibility, performance, and trust — compatible with passkeys, MFA, and your design system."
                 />
 
                 <ContentWithImageSection
-                    heading="Why OAuth Hub?"
-                    content={<><p>With OAuth Hub, access management becomes worry-free. Compliance is baked in from the
-                        start, helping you stay ahead of regulations like GDPR while reducing operational risk. Security
-                        is handled centrally through proven token and session management, giving both users and
-                        businesses the confidence that data and identities are protected.</p>
+                    heading="Why Login FE?"
+                    content={
+                        <>
+                            <p>
+                                Authentication shouldn’t force design compromises. Login FE gives you full visual control — typography,
+                                color, spacing, states — while preserving security best practices out of the box. Keep your CX
+                                consistent and your users confident from the very first pixel.
+                            </p>
 
-                        <p>As your ecosystem expands, OAuth Hub scales with you. Adding new apps, services, or partners
-                            is seamless, with no need to re-engineer your foundations. From advanced features like PAR
-                            and token exchange to progressive trust and KYB integration, OAuth Hub adapts to whatever
-                            your future requires.</p>
+                            <p>
+                                Developers get a component-driven toolkit that drops into modern stacks (Next.js, React, Web
+                                Components), supports i18n, RTL, and dynamic content, and integrates cleanly with your IdP policies and
+                                sessions. From passkeys/WebAuthn to step-up MFA and device trust, it scales with your roadmap instead of
+                                blocking it.
+                            </p>
 
-                        <p>Put simply, OAuth Hub makes secure access simple, compliant, and built for growth — so you
-                            can focus on delivering value, while we handle the heavy lifting of identity.</p>
-                    </>}
+                            <p>
+                                Put simply, Login FE lets you deliver a premium, compliant sign-in experience — fast — while we handle
+                                the heavy lifting of secure UX, edge cases, and orchestration.
+                            </p>
+                        </>
+                    }
                     imageURL="/1646x1600.png"
                     imageLocation="left"
                 />
-                <ImageSection
-                    imageURL="/3072x1397.png"
-                />
-                <Header2Section title="Key Features"/>
-                <SplitSection left={
-                    <>
-                        <p>At the core of OAuth Hub is a centralized token service that simplifies OAuth2 and OpenID
-                            Connect,
-                            ensuring secure and reliable access across all your applications and APIs. Instead of
-                            managing
-                            scattered integrations, you get one foundation to handle authentication and authorization at
-                            scale.
-                        </p>
-                        <p>
-                            Onboarding new clients and APIs is fast and straightforward, with minimal configuration
-                            required.
-                            This makes it easier for teams to connect services without delays or heavy technical
-                            overhead,
-                            while
-                            keeping everything aligned under a single, secure identity layer.
-                        </p>
-                    </>
-                } right={<>
-                    <p>
-                        Access is controlled through granular policies that are designed to meet modern compliance
-                        frameworks. Whether you’re working under GDPR, financial regulations, or industry-specific
-                        requirements, OAuth Hub ensures that every access decision is both secure and compliant.
-                    </p>
-                    <p>
-                        For organizations with advanced needs, OAuth Hub supports features such as PAR, JAR, RAR, and
-                        token
-                        exchange, making it fully compatible with next-generation authorization flows. And because no
-                        two
-                        ecosystems are the same, the platform offers modular add-ons like progressive trust, KYB, and
-                        passkeys, so you can adapt the solution to your business as it evolves.
-                    </p></>}/>
 
-                <ImageSectionDark
-                    heading="Simple Integration, Secure Growth"
-                    content={<>
-                        <p>
-                            OAuth Hub makes integration effortless. Connect your apps, APIs, and partners with ease, and
-                            let the platform manage authentication through trusted OAuth2 and OIDC standards. Users and
-                            services log in securely, while your team avoids the overhead of complex setups.
-                        </p>
-                        <p>
-                            From there, access is authorized with centralized policies that keep compliance simple and
-                            security consistent. As your business grows, OAuth Hub grows with you — scaling seamlessly
-                            without re-engineering, so you can focus on innovation instead of identity plumbing.
-                        </p>
-                    </>}
-                    imageURL="/1646x1600.png"
-                    cta={
-                        {href: "/about/contact", text: "Contact us"}
+                <ImageSection imageURL="/3072x1397.png" />
+
+                <Header2Section title="Key Features" />
+                <SplitSection
+                    left={
+                        <>
+                            <p>
+                                <strong>Design-first components.</strong> Theme with tokens, CSS variables, or Tailwind; align with your
+                                brand and DS primitives. All common states covered: loading, errors, validation, rate-limit banners,
+                                recovery hints, and contextual help.
+                            </p>
+                            <p>
+                                <strong>International by default.</strong> i18n/locale packs, pluralization, RTL support, and date/number
+                                formatting. Content slots to localize legal copy, consent, and progressive disclosure.
+                            </p>
+                        </>
+                    }
+                    right={
+                        <>
+                            <p>
+                                <strong>Secure by design.</strong> Passkeys/WebAuthn, TOTP/SMS/Email MFA, CSRF protection, anti-automation
+                                hooks, device trust prompts, and privacy-by-default telemetry. Works with adaptive/step-up policies from
+                                your IdP.
+                            </p>
+                            <p>
+                                <strong>Headless or prebuilt.</strong> Use our headless hooks for full control or drop in pre-styled
+                                widgets. Analytics events, A/B test IDs, and audit breadcrumbs included for product and compliance teams.
+                            </p>
+                        </>
                     }
                 />
-                <Header2Section
-                    title="Trusted identity, empowering people and businesses"
+
+                <ImageSectionDark
+                    heading="Simple Integration, Branded Results"
+                    content={
+                        <>
+                            <p>
+                                Install via npm and mount in minutes. Works SSR/CSR with Next.js, supports route-based flows (login,
+                                signup, recovery, verify email/phone), and exposes lifecycle callbacks for telemetry and risk engines.
+                            </p>
+                            <p>
+                                Update copy, fields, and steps with config — not rewrites. As requirements evolve, adjust policies in the
+                                IdP and the UI adapts automatically. No re-engineering, no visual drift.
+                            </p>
+                        </>
+                    }
+                    imageURL="/1646x1600.png"
+                    cta={{ href: "/about/contact", text: "Contact us" }}
                 />
-                <ImageSection
-                    imageURL="/3018x786.png"
-                />
+
+                <Header2Section title="Trusted identity, in your own look & feel" />
+                <ImageSection imageURL="/3018x786.png" />
             </main>
         </>
     );

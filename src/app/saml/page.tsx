@@ -10,90 +10,95 @@ export default function Home() {
         <>
             <main>
                 <BasicHeroWithoutImage
-                    title="OAuth Hub Secure access, simplified"
-                    subTitle="OAuth Hub is your identity backbone — the central place where all your authentication and authorization flows come together. Built on battle-tested standards like OAuth2 and OpenID Connect, it makes managing access across apps, APIs, and partners seamless, compliant, and worry-free."
+                    title="SAML Hub Federation made simple"
+                    subTitle="SAML Hub is your bridge to secure, standards-based federation. Built to connect legacy systems and modern applications alike, it centralizes identity management and makes SAML integration seamless, compliant, and worry-free."
                 />
 
                 <ContentWithImageSection
-                    heading="Why OAuth Hub?"
-                    content={<><p>With OAuth Hub, access management becomes worry-free. Compliance is baked in from the
-                        start, helping you stay ahead of regulations like GDPR while reducing operational risk. Security
-                        is handled centrally through proven token and session management, giving both users and
-                        businesses the confidence that data and identities are protected.</p>
+                    heading="Why SAML Hub?"
+                    content={
+                        <>
+                            <p>
+                                With SAML Hub, identity federation becomes effortless. Compliance is built in from the
+                                ground up, helping you meet regulatory requirements while reducing operational risk.
+                                Security is handled centrally through proven assertions and policies, giving both users
+                                and businesses confidence that data and identities are protected.
+                            </p>
 
-                        <p>As your ecosystem expands, OAuth Hub scales with you. Adding new apps, services, or partners
-                            is seamless, with no need to re-engineer your foundations. From advanced features like PAR
-                            and token exchange to progressive trust and KYB integration, OAuth Hub adapts to whatever
-                            your future requires.</p>
+                            <p>
+                                As your ecosystem expands, SAML Hub scales alongside it. Adding new partners, cloud
+                                services, or on-prem systems is seamless, with no need to re-engineer your foundations.
+                                Whether you’re bridging older infrastructure or integrating new platforms, SAML Hub adapts
+                                to your needs.
+                            </p>
 
-                        <p>Put simply, OAuth Hub makes secure access simple, compliant, and built for growth — so you
-                            can focus on delivering value, while we handle the heavy lifting of identity.</p>
-                    </>}
+                            <p>
+                                Put simply, SAML Hub makes federation simple, compliant, and built for growth — so you can
+                                focus on delivering value while we handle the heavy lifting of identity integration.
+                            </p>
+                        </>
+                    }
                     imageURL="/1646x1600.png"
                     imageLocation="left"
                 />
-                <ImageSection
-                    imageURL="/3072x1397.png"
-                />
-                <Header2Section title="Key Features"/>
-                <SplitSection left={
-                    <>
-                        <p>At the core of OAuth Hub is a centralized token service that simplifies OAuth2 and OpenID
-                            Connect,
-                            ensuring secure and reliable access across all your applications and APIs. Instead of
-                            managing
-                            scattered integrations, you get one foundation to handle authentication and authorization at
-                            scale.
-                        </p>
-                        <p>
-                            Onboarding new clients and APIs is fast and straightforward, with minimal configuration
-                            required.
-                            This makes it easier for teams to connect services without delays or heavy technical
-                            overhead,
-                            while
-                            keeping everything aligned under a single, secure identity layer.
-                        </p>
-                    </>
-                } right={<>
-                    <p>
-                        Access is controlled through granular policies that are designed to meet modern compliance
-                        frameworks. Whether you’re working under GDPR, financial regulations, or industry-specific
-                        requirements, OAuth Hub ensures that every access decision is both secure and compliant.
-                    </p>
-                    <p>
-                        For organizations with advanced needs, OAuth Hub supports features such as PAR, JAR, RAR, and
-                        token
-                        exchange, making it fully compatible with next-generation authorization flows. And because no
-                        two
-                        ecosystems are the same, the platform offers modular add-ons like progressive trust, KYB, and
-                        passkeys, so you can adapt the solution to your business as it evolves.
-                    </p></>}/>
 
-                <ImageSectionDark
-                    heading="Simple Integration, Secure Growth"
-                    content={<>
-                        <p>
-                            OAuth Hub makes integration effortless. Connect your apps, APIs, and partners with ease, and
-                            let the platform manage authentication through trusted OAuth2 and OIDC standards. Users and
-                            services log in securely, while your team avoids the overhead of complex setups.
-                        </p>
-                        <p>
-                            From there, access is authorized with centralized policies that keep compliance simple and
-                            security consistent. As your business grows, OAuth Hub grows with you — scaling seamlessly
-                            without re-engineering, so you can focus on innovation instead of identity plumbing.
-                        </p>
-                    </>}
-                    imageURL="/1646x1600.png"
-                    cta={
-                        {href: "/about/contact", text: "Contact us"}
+                <ImageSection imageURL="/3072x1397.png" />
+
+                <Header2Section title="Key Features" />
+                <SplitSection
+                    left={
+                        <>
+                            <p>
+                                At the core of SAML Hub is a centralized federation service that simplifies secure
+                                integration across your applications and partners. Instead of managing scattered and
+                                brittle connections, you gain one foundation to handle SAML assertions and trust at scale.
+                            </p>
+                            <p>
+                                Onboarding new partners and applications is fast and straightforward, with minimal
+                                configuration required. This reduces complexity for your teams and keeps all connections
+                                aligned under a single, secure identity layer.
+                            </p>
+                        </>
+                    }
+                    right={
+                        <>
+                            <p>
+                                Access is enforced through granular policies that align with compliance frameworks. Whether
+                                you operate under GDPR, financial regulations, or industry-specific standards, SAML Hub
+                                ensures that every federation exchange is both secure and compliant.
+                            </p>
+                            <p>
+                                For organizations modernizing their ecosystems, SAML Hub bridges the gap between legacy
+                                systems and modern identity solutions. Combined with modular add-ons like progressive trust
+                                and passkeys, it evolves with your business and secures the path to the future.
+                            </p>
+                        </>
                     }
                 />
-                <Header2Section
-                    title="Trusted identity, empowering people and businesses"
+
+                <ImageSectionDark
+                    heading="Seamless Federation, Lasting Trust"
+                    content={
+                        <>
+                            <p>
+                                SAML Hub makes integration painless. Connect legacy apps, modern services, and external
+                                partners with ease, and let the platform manage secure assertions and identity exchange.
+                                Users gain smooth sign-on experiences, while your team avoids the overhead of complex,
+                                custom setups.
+                            </p>
+                            <p>
+                                From there, access is governed by centralized policies that keep compliance simple and
+                                security consistent. As your business grows, SAML Hub scales with you — ensuring that trust
+                                and federation never become bottlenecks.
+                            </p>
+                        </>
+                    }
+                    imageURL="/1646x1600.png"
+                    cta={{ href: "/about/contact", text: "Contact us" }}
                 />
-                <ImageSection
-                    imageURL="/3018x786.png"
-                />
+
+                <Header2Section title="Trusted identity, empowering people and businesses" />
+                <ImageSection imageURL="/3018x786.png" />
             </main>
         </>
     );
