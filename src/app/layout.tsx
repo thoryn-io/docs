@@ -3,7 +3,6 @@ import {Geist, Geist_Mono} from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/NavBar";
 import {Inter} from "next/font/google";
-import LeadChat from "@/components/LeadsChat";
 import Chat from "@/components/Chat";
 
 // This generates a CSS variable (--font-inter)
