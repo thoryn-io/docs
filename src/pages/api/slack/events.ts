@@ -33,9 +33,13 @@ function verifySlackSignature(req: NextApiRequest, rawBody: Buffer): boolean {
         return false;
     }
 }
-
+type ChatMessage = {
+    from: "agent" | "visitor";
+    text?: string;
+    ts?: string;
+};
 /** Simple in-memory subscribers for SSE (MVP) */
-type Listener = (payload: any) => void;
+type Listener = (payload: ChatMessage) => void;
 export const Subscribers = new Map<string, Set<Listener>>();
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void> {

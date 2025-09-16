@@ -2,7 +2,6 @@
 
 import {useEffect, useRef} from "react";
 import {Dialog, DialogBackdrop, DialogPanel} from "@headlessui/react";
-import {XMarkIcon} from "@heroicons/react/24/outline";
 import LeadsChat from "@/components/Chat/LeadsChat";
 
 type DrawerProps = {

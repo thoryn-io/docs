@@ -2,7 +2,11 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { Subscribers } from "../slack/events";
 
 export const config = { api: { bodyParser: false } }; // SSE is streaming, no parsing
-
+type ChatMessage = {
+    from: "agent" | "visitor";
+    text?: string;
+    ts?: string;
+};
 export default async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void> {
     if (req.method !== "GET") {
         res.setHeader("Allow", "GET");
@@ -24,8 +28,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         "X-Accel-Buffering": "no",
     });
 
-    const send = (payload: any) => res.write(`data: ${JSON.stringify(payload)}\n\n`);
 
+    const send = (payload: ChatMessage): void => {
+        res.write(`data: ${JSON.stringify(payload)}\n\n`);
+    };
     if (!Subscribers.has(sessionId)) Subscribers.set(sessionId, new Set());
     Subscribers.get(sessionId)!.add(send);
 
