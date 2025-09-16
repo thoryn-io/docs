@@ -39,9 +39,7 @@ export default function RootLayout({
         <NavBar></NavBar>
 
         {children}
-        <footer>
-            <Chat/>
-        </footer>
+        <Chat/>
         </body>
         </html>
     );
