@@ -38,7 +38,7 @@ export default function Home() {
                     ]}/>
                 <BasicHero
                     title="Worry free IAM and KYB solutions"
-                    subTitle="Figuring out al the complexity and compliance for IAM and KYB is stressful and easy to mess up. Get the battle tested solution and benefit from industry lessons."
+                    subTitle="Figuring out all the complexity and compliance for IAM and KYB is stressful and easy to mess up. Get the battle tested solution and benefit from industry lessons."
                     primaryButton={
                         <ButtonLink
                             href="#"
