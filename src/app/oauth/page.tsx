@@ -29,12 +29,12 @@ export default function Home() {
                         <p>Put simply, OAuth Hub makes secure access simple, compliant, and built for growth — so you
                             can focus on delivering value, while we handle the heavy lifting of identity.</p>
                     </>}
-                    imageURL="/1646x1600.png"
+                    imageURL="/img/pexels/pexels-tirachard-kumtanom-112571-601174.jpg"
                     imageLocation="left"
                 />
                 <ImageSection
-                    imageURL="/3072x1397.png"
-                />
+                    imageURL="/img/pexels/pexels-pixabay-461593.png" />
+
                 <Header2Section title="Key Features"/>
                 <SplitSection left={
                     <>
@@ -83,7 +83,7 @@ export default function Home() {
                             without re-engineering, so you can focus on innovation instead of identity plumbing.
                         </p>
                     </>}
-                    imageURL="/1646x1600.png"
+                    imageURL="/img/pexels/pexels-haberdoedas-33215685.jpg"
                     cta={
                         {href: "/about/contact", text: "Contact us"}
                     }

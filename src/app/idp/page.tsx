@@ -37,11 +37,12 @@ export default function Home() {
                             </p>
                         </>
                     }
-                    imageURL="/1646x1600.png"
+                    imageURL="/img/pexels/pexels-tirachard-kumtanom-112571-601174.jpg"
                     imageLocation="left"
                 />
 
-                <ImageSection imageURL="/3072x1397.png" />
+                <ImageSection
+                    imageURL="/img/pexels/pexels-pixabay-461593.png" />
 
                 <Header2Section title="Key Features" />
                 <SplitSection
@@ -91,7 +92,7 @@ export default function Home() {
                             </p>
                         </>
                     }
-                    imageURL="/1646x1600.png"
+                    imageURL="/img/pexels/pexels-haberdoedas-33215685.jpg"
                     cta={{ href: "/about/contact", text: "Contact us" }}
                 />
 
