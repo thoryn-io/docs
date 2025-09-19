@@ -98,7 +98,7 @@ export default function Home() {
                 />
 
                 <Header2Section title="Trusted identity, empowering people and businesses" />
-                <ImageSection imageURL="/3018x786.png" />
+                <ImageSection imageURL="/img/pexels/pexels-quang-nguyen-vinh-222549-2176593-small.png"/>
             </main>
         </>
     );

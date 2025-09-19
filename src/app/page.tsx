@@ -137,7 +137,7 @@ export default function Home() {
                             most — driving growth and building trust.
                         </p>
                     </>}
-                    imageURL="/850x750.png"
+                    imageURL="/img/pexels/pexels-mahmoud-yahyaoui-29196426.jpg"
                     cta={
                         {href: "", text: "Contact us"}
                     }
@@ -159,7 +159,7 @@ export default function Home() {
                             most — driving growth and building trust.
                         </p>
                     </>}
-                    imageURL="/850x750.png"
+                    imageURL="/img/pexels/pexels-njeromin-12801806.jpg"
                     cta={
                         {href: "", text: "Contact us"}
                     }
