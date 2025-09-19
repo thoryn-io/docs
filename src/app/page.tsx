@@ -80,35 +80,35 @@ export default function Home() {
                     {
                         header: "Oauth-hub",
                         text: "OAuth Hub: Simple, secure, compliant access",
-                        iconHref: "/img/products/oauth_hub_icon_32x32.png",
+                        iconHref: "/img/products/oauth_hub_icon_64x64.png",
                         imageHref: "/img/products/oauth_hub_bg_1000x1200.png",
                         href: "/oauth"
                     },
                     {
                         header: "SAML-hub",
                         text: "SAML Hub: Seamless, secure, and compliant federation",
-                        iconHref: "/img/products/saml_hub_icon_32x32.png",
+                        iconHref: "/img/products/saml_hub_icon_64x64.png",
                         imageHref: "/img/products/saml_hub_bg_1000x1200.png",
                         href: "/saml"
                     },
                     {
                         header: "IdP",
                         text: "IdP: Your trusted identity provider for secure, compliant access",
-                        iconHref: "/img/products/idp_icon_32x32.png",
+                        iconHref: "/img/products/idp_icon_64x64.png",
                         imageHref: "/img/products/idp_bg_1000x1200.png",
                         href: "/idp"
                     },
                     {
                         header: "KYC/KYB",
                         text: "KYC/KYB: Fast, compliant verification for users and businesses",
-                        iconHref: "/img/products/kyc_kyb_icon_32x32.png",
+                        iconHref: "/img/products/kyc_kyb_icon_64x64.png",
                         imageHref: "/img/products/kyc_kyb_bg_1000x1200.png",
                         href: "/kyc-kyb"
                     },
                     {
                         header: "Login FE",
                         text: "Login FE: A seamless, secure front-end experience for user authentication",
-                        iconHref: "/img/products/login_fe_icon_32x32.png",
+                        iconHref: "/img/products/login_fe_icon_64x64.png",
                         imageHref: "/img/products/login_fe_bg_1000x1200.png",
                         href: "/login-fe"
                     }]}/>
