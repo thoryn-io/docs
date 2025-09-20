@@ -23,7 +23,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
     title: "Thoryn",
-    description: "OAuth SAML IdP solution",
+    description: "The battle tested OAuth SAML IdP solution!",
 };
 
 export default function RootLayout({
