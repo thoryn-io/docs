@@ -4,17 +4,12 @@
 import { useEffect, useRef, useState } from "react";
 
 export default function LeadsChat() {
-    const [sessionId, setSessionId] = useState<string>();
     const [messages, setMessages] = useState<{ from: "me" | "agent"; text: string }[]>([]);
     const inputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
         (async () => {
-            const r = await fetch("/api/leads/session", { method: "POST" });
-            const { sessionId } = await r.json();
-            setSessionId(sessionId);
-
-            const es = new EventSource(`/api/chat/stream?sessionId=${sessionId}`);
+            const es = new EventSource(`/api/chat/stream`);
             es.onmessage = (e) => {
                 const payload = JSON.parse(e.data);
                 setMessages((m) => [...m, { from: "agent", text: payload.text }]);
@@ -24,7 +19,6 @@ export default function LeadsChat() {
     }, []);
 
     const send = async () => {
-        if (!sessionId) return;
         const text = inputRef.current?.value?.trim();
         if (!text) return;
         setMessages((m) => [...m, { from: "me", text }]);
@@ -32,7 +26,7 @@ export default function LeadsChat() {
         await fetch("/api/chat/send", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ sessionId, text }),
+            body: JSON.stringify({ text }),
         });
     };
 

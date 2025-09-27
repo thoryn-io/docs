@@ -2,6 +2,7 @@
 import { cookies, headers } from "next/headers";
 import { redis } from "../redis";
 import { hmacSHA256, randomId } from "../crypto";
+import {ChatThreadData} from "@/lib/chat";
 
 const COOKIE = process.env.SESSION_COOKIE_NAME ?? "__host.sid";
 const SECRET = process.env.SESSION_SECRET!;
@@ -158,9 +159,9 @@ export async function setSessionValueWithThreadIndex(
         keyName === "CHAT_THREAD" &&
         typeof value === "object" &&
         value &&
-        "thread_ts" in (value as any)
+        "thread_ts" in (value as ChatThreadData)
     ) {
-        const thread_ts = (value as any).thread_ts as string;
+        const thread_ts = (value as ChatThreadData)?.thread_ts ?? "";
         await redis.set(threadKey(thread_ts), sid, { ex: TTL });
     }
 

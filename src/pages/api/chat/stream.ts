@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { Subscribers } from "../slack/events";
+import {getSession} from "@/lib/session";
 
 export const config = { api: { bodyParser: false } }; // SSE is streaming, no parsing
 type ChatMessage = {
@@ -14,9 +15,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return;
     }
 
-    const sessionId = (req.query.sessionId as string) || "";
-    if (!sessionId) {
-        res.status(400).end("Missing sessionId");
+    const {sid} = await getSession();
+    if (!sid) {
+        res.status(400).end("Missing sid");
         return;
     }
 
@@ -32,15 +33,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const send = (payload: ChatMessage): void => {
         res.write(`data: ${JSON.stringify(payload)}\n\n`);
     };
-    if (!Subscribers.has(sessionId)) Subscribers.set(sessionId, new Set());
-    Subscribers.get(sessionId)!.add(send);
+    if (!Subscribers.has(sid)) Subscribers.set(sid, new Set());
+    Subscribers.get(sid)!.add(send);
 
     // heartbeat
     const ping = setInterval(() => res.write(":\n\n"), 15000);
 
     req.on("close", () => {
         clearInterval(ping);
-        Subscribers.get(sessionId)?.delete(send);
+        Subscribers.get(sid)?.delete(send);
         res.end();
     });
 }

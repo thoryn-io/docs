@@ -1,8 +1,5 @@
 import type {NextApiRequest, NextApiResponse} from "next";
-import {WebClient} from "@slack/web-api";
 import {sendMessage} from "@/lib/chat";
-
-const slack = new WebClient(process.env.SLACK_BOT_TOKEN);
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void> {
     if (req.method !== "POST") {
