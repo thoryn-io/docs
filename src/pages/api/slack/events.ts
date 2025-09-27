@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import crypto from "crypto";
-import { LeadMemory } from "../leads/session";
+import { findSessionId } from "@/lib/chat";
+import {logger} from "@/lib/logs";
 
 /** Disable body parsing: we need the raw body to verify Slack signatures */
 export const config = {
@@ -48,7 +49,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         res.status(405).end("Method Not Allowed");
         return;
     }
-    console.log("Incoming Slack event", req.headers, req.body);
+    logger.debug("Incoming Slack event", req.headers, req.body);
     const raw = await getRawBody(req);
 
     // 1) URL verification (no signature needed by Slack, but safe either way)
@@ -79,7 +80,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         ev.thread_ts &&
         ev.channel === process.env.SLACK_LEADS_CHANNEL_ID
     ) {
-        const sessionId = LeadMemory.reverse.get(ev.thread_ts);
+        const sessionId = await findSessionId(ev.thread_ts);
         if (sessionId) {
             // Relay only Slack user messages (skip your bot echoes)
             const fromAgent = !!ev.user && !ev.bot_id;
