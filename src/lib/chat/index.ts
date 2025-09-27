@@ -65,8 +65,9 @@ export async function findSessionId(threadId: string) {
 
     const thread = await getSessionByThread(threadId)
     if (!thread) {
-        logger.warn("No session found for the provided thread ID");
+        logger.warn(`No session found for the provided thread ID ${threadId}`);
         return
     }
+    logger.warn(`Session ${thread.sid} ${thread.data} found for the provided thread ID ${threadId}`);
     return thread.sid;
 }
