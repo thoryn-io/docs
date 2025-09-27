@@ -86,6 +86,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             const fromAgent = !!ev.user && !ev.bot_id;
             if (fromAgent) {
                 const set = Subscribers.get(sessionId);
+                if (!set) {
+                    logger.warn(`No listeners found ${sessionId}`)
+                } else {
+                    logger.warn(`Found ${set.size} listeners for ${sessionId}`)
+                }
                 if (set) set.forEach((fn) => fn({ from: "agent", text: ev.text, ts: ev.ts }));
             }
         }
