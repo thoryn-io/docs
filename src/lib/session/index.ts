@@ -1,8 +1,9 @@
 // lib/session.ts
-import { cookies, headers } from "next/headers";
 import { redis } from "../redis";
 import { hmacSHA256, randomId } from "../crypto";
 import {ChatThreadData} from "@/lib/chat";
+import type { NextApiRequest, NextApiResponse } from "next";
+import { parse as parseCookie, serialize as serializeCookie } from "cookie";
 
 const COOKIE = process.env.SESSION_COOKIE_NAME ?? "__host.sid";
 const SECRET = process.env.SESSION_SECRET!;
@@ -27,39 +28,32 @@ async function verify(signed: string): Promise<string | null> {
     return mac === expect ? raw : null;
 }
 
-function cookieBase(maxAge?: number) {
-    return {
-        name: COOKIE, value: "",
-        httpOnly: true, secure: true, sameSite: "lax" as const, path: "/",
-        maxAge,
-    };
-}
 
 // ───────────────────────────────────────────────────────────────────────────────
 // Core
 
 /** Get current session. If `autoCreate` is true, create an anonymous session when absent. */
-export async function getSession(opts?: { autoCreate?: boolean; initial?: Record<string, unknown> }) {
-    const jar = await cookies();
-    const signed = jar.get(COOKIE)?.value;
+export async function getSession(req: NextApiRequest, res : NextApiResponse, opts?: { autoCreate?: boolean; initial?: Record<string, unknown> }) {
+    const jar = parseCookie(req.headers.cookie ?? "");
+    const signed = jar[COOKIE];
 
     if (!signed) {
         if (opts?.autoCreate) {
-            return createSession(opts.initial); // anonymous
+            return createSession(req, res, {extra: opts.initial}); // anonymous
         }
         return { sid: null as string | null, data: null as SessionData | null };
     }
 
     const raw = await verify(signed);
     if (!raw) {
-        if (opts?.autoCreate) return createSession(opts.initial);
+        if (opts?.autoCreate) return createSession(req, res, {extra: opts.initial});
         return { sid: null, data: null };
     }
 
     const [sid] = raw.split(":");
     const data = await redis.get<SessionData>(key(sid));
     if (!data) {
-        if (opts?.autoCreate) return createSession(opts.initial);
+        if (opts?.autoCreate) return createSession(req, res, {extra: opts.initial});
         return { sid: null, data: null };
     }
 
@@ -74,37 +68,48 @@ export async function getSession(opts?: { autoCreate?: boolean; initial?: Record
  * - Pass `null` (or omit) for an **anonymous** session.
  * - `extra` lets you add arbitrary key/values to the SessionData.
  */
-export async function createSession(extra?: Record<string, unknown>) {
+export async function createSession(req: NextApiRequest, res : NextApiResponse, opts: {extra?: Record<string, unknown>}) {
     const sid = randomId(32); // regenerate to prevent fixation
     const issuedAt = String(nowSec());
-    const ua = (await headers()).get("user-agent") ?? "na";
+    const ua = req.headers["user-agent"] ?? "na";
     const raw = `${sid}:${issuedAt}:${ua.length}`;
 
     const base: SessionData = {
         createdAt: nowSec(),
         lastSeen: nowSec(),
     };
-    const data: SessionData = extra ? { ...base, ...extra } : base;
+    const data: SessionData = opts.extra ? { ...base, ...opts.extra } : base;
 
     await redis.set(key(sid), data, { ex: TTL });
     const signed = await sign(raw);
-    (await cookies()).set({ ...cookieBase(TTL), value: signed });
+    setCookie(res, signed, TTL);
 
     return { sid, data };
 }
-
+function setCookie(res: NextApiResponse, value: string, maxAge?: number) {
+    res.setHeader(
+        "Set-Cookie",
+        serializeCookie(COOKIE, value, {
+            httpOnly: true,
+            secure: true,
+            sameSite: "lax",
+            path: "/",
+            maxAge,
+        })
+    );
+}
 /** Merge arbitrary fields into the current session (creates anonymous if none). */
-export async function mergeSession(patch: Record<string, unknown>) {
-    const { sid, data } = await getSession({ autoCreate: true });
+export async function mergeSession(req: NextApiRequest, res : NextApiResponse, opts:{patch: Record<string, unknown>}) {
+    const { sid, data } = await getSession(req,res,{ autoCreate: true });
     if (!sid || !data) return null;
-    const updated: SessionData = { ...data, ...patch, lastSeen: nowSec() };
+    const updated: SessionData = { ...data, ...opts.patch, lastSeen: nowSec() };
     await redis.set(key(sid), updated, { ex: TTL });
     return updated;
 }
 
 /** Set a single key in the session (creates anonymous if none). */
-export async function setSessionValue(keyName: string, value: unknown) {
-    const { sid, data } = await getSession({ autoCreate: true });
+export async function setSessionValue(req: NextApiRequest, res : NextApiResponse, keyName: string, value: unknown) {
+    const { sid, data } = await getSession(req,res,{ autoCreate: true });
     if (!sid || !data) return null;
     const updated: SessionData = { ...data, [keyName]: value, lastSeen: nowSec() };
     await redis.set(key(sid), updated, { ex: TTL });
@@ -112,32 +117,32 @@ export async function setSessionValue(keyName: string, value: unknown) {
 }
 
 /** Read a single key from the session. */
-export async function getSessionValue<T = unknown>(keyName: string): Promise<T | undefined> {
-    const { data } = await getSession();
+export async function getSessionValue<T = unknown>(req: NextApiRequest, res : NextApiResponse,keyName: string): Promise<T | undefined> {
+    const { data } = await getSession(req, res);
     return (data?.[keyName] as T | undefined);
 }
 
 /** Update with a function (no auto-create; returns null if no session). */
-export async function updateSession(updater: (d: SessionData) => SessionData) {
-    const { sid, data } = await getSession();
+export async function updateSession(req: NextApiRequest, res : NextApiResponse,opts:{updater: (d: SessionData) => SessionData}) {
+    const { sid, data } = await getSession(req,res);
     if (!sid || !data) return null;
-    const updated = updater({ ...data, lastSeen: nowSec() });
+    const updated = opts.updater({ ...data, lastSeen: nowSec() });
     await redis.set(key(sid), updated, { ex: TTL });
     return updated;
 }
 
 /** Destroy current session (if any). */
-export async function destroySession() {
-    const jar = await cookies();
-    const signed = jar.get(COOKIE)?.value;
+export async function destroySession(req: NextApiRequest, res : NextApiResponse) {
+    const jar = parseCookie(req.headers.cookie ?? "");
+    const signed = jar[COOKIE];
     if (signed) {
         const raw = await verify(signed);
         if (raw) {
             const sid = raw.split(":")[0];
             await redis.del(key(sid));
         }
+        setCookie(res, signed, 0);
     }
-    jar.set({ ...cookieBase(0), value: "", maxAge: 0 });
 }
 function threadKey(thread_ts: string) {
     return `thread:${thread_ts}`;
@@ -145,10 +150,11 @@ function threadKey(thread_ts: string) {
 
 /** Set session key and maintain reverse index for thread_ts */
 export async function setSessionValueWithThreadIndex(
+    req: NextApiRequest, res : NextApiResponse,
     keyName: string,
     value: unknown
 ) {
-    const { sid, data } = await getSession({ autoCreate: true });
+    const { sid, data } = await getSession(req,res,{ autoCreate: true });
     if (!sid || !data) return null;
 
     const updated: SessionData = { ...data, [keyName]: value, lastSeen: nowSec() };

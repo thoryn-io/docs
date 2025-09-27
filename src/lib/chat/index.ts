@@ -1,6 +1,7 @@
 import {getSession, setSessionValueWithThreadIndex, getSessionByThread} from "@/lib/session";
 import {logger} from "@/lib/logs";
 import { WebClient } from "@slack/web-api";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 
 const CHAT_THREAD = "CHAT_THREAD"
@@ -10,8 +11,9 @@ export type ChatThreadData = {
     thread_ts: string;
 };
 
-async function initChatOrReconnect(): Promise<ChatThreadData> {
-    const {sid, data} = await getSession({
+async function initChatOrReconnect(req: NextApiRequest,
+                                   res: NextApiResponse): Promise<ChatThreadData> {
+    const {sid, data} = await getSession(req, res, {
         autoCreate: true
     })
     if (!sid) {
@@ -40,18 +42,20 @@ async function initChatOrReconnect(): Promise<ChatThreadData> {
             channel: channel,
             thread_ts: thread_ts
         };
-        setSessionValueWithThreadIndex(CHAT_THREAD, chatThread)
+        setSessionValueWithThreadIndex(req, res, CHAT_THREAD, chatThread)
         return chatThread
     }
     return chatThread
 }
 
-export async function sendMessage(message: string) {
-    const chatThread = await initChatOrReconnect();
+export async function sendMessage(req: NextApiRequest,
+                                  res: NextApiResponse,
+                                  opts: {message: string}) {
+    const chatThread = await initChatOrReconnect(req, res);
     const response =await slack.chat.postMessage({
         channel: chatThread.channel,
         thread_ts: chatThread.thread_ts,
-        text: message
+        text: opts.message
     });
     logger.debug("Send message in thread response", response)
 }

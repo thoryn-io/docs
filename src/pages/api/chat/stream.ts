@@ -15,7 +15,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return;
     }
 
-    const {sid} = await getSession();
+    const {sid} = await getSession(req, res);
     if (!sid) {
         res.status(400).end("Missing sid");
         return;
