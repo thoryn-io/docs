@@ -49,7 +49,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         res.status(405).end("Method Not Allowed");
         return;
     }
-    logger.debug("Incoming Slack event", req.headers, req.body);
+    logger.info("Incoming Slack event", req.headers, req.body);
     const raw = await getRawBody(req);
 
     // 1) URL verification (no signature needed by Slack, but safe either way)
