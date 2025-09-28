@@ -1,4 +1,4 @@
-import { getSession, setSessionValueWithThreadIndex, getSessionByThread } from "@/lib/session/routes";
+import { getSession, setSessionValueWithThreadIndex, getSessionByThread } from "@/lib/session";
 import { logger } from "@/lib/logs";
 import { WebClient } from "@slack/web-api";
 import { NextRequest } from "next/server";

@@ -1,6 +1,6 @@
 import { NextRequest } from "next/server";
 import { Subscribers } from "@/app/api/slack/events/route"; // adjust path
-import { getSession } from "@/lib/session/routes";
+import { getSession } from "@/lib/session";
 
 type ChatMessage = {
     from: "agent" | "visitor";
