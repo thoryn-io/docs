@@ -2,9 +2,10 @@ import type { NextRequest } from "next/server";
 import { cookies as cookiesFn } from "next/headers";
 
 // Next 14/15 compatibility: cookies() may be sync or async
-async function getCookieJar() {
-    const r = (cookiesFn as any)();
-    return typeof r?.then === "function" ? await r : r;
+
+async function getCookieJar(): Promise<ReturnType<typeof cookiesFn>> {
+    const result = cookiesFn();
+    return await result; // Next.js 15 (async)
 }
 
 export type SetCookieOptions = {

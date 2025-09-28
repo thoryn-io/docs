@@ -9,9 +9,9 @@ const CSRF_COOKIE = process.env.CSRF_COOKIE_NAME ?? "__host.csrf";
 const TOKEN_HEADER = process.env.CSRF_HEADER_NAME ?? "x-csrf-token";
 
 // Next 14/15 compat: headers() may be sync or async
-async function getHeaders() {
-    const r = (headersFn as any)();
-    return typeof r?.then === "function" ? await r : r;
+async function getHeaders(): Promise<Headers> {
+    const result = headersFn();
+    return await result;
 }
 
 /** Ensure session has a CSRF secret; return it and set a non-HttpOnly cookie (double-submit). */
