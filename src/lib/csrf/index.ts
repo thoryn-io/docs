@@ -14,14 +14,16 @@ async function getHeaders(): Promise<Headers> {
     return await result;
 }
 
+
+
 /** Ensure session has a CSRF secret; return it and set a non-HttpOnly cookie (double-submit). */
-export async function getOrCreateCsrfToken(req: NextRequest): Promise<string> {
-    const {data} = await getSession(req, {autoCreate: true});
+export async function getOrCreateCsrfToken(): Promise<string> {
+    const {data} = await getSession({autoCreate: true});
     const cur = (data?.csrf as { secret?: string; issuedAt?: number }) ?? {};
     const secret = cur.secret ?? randomId(32);
 
     if (!cur.secret) {
-        await mergeSession(req, {patch: {csrf: {secret, issuedAt: Date.now()}}});
+        await mergeSession({patch: {csrf: {secret, issuedAt: Date.now()}}});
     }
 
     // mirror token to a non-HttpOnly cookie (double-submit)
@@ -58,7 +60,7 @@ export async function verifyCsrf(req: NextRequest): Promise<{ ok: true } | { ok:
     }
 
     // 3) Session must hold the same secret
-    const {data} = await getSession(req);
+    const {data} = await getSession();
     const secret = (data?.csrf as { secret?: string } | undefined)?.secret;
     if (!secret || headerToken !== secret) {
         return {ok: false, reason: "session-mismatch"};

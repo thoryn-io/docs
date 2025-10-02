@@ -17,8 +17,8 @@ export type SetCookieOptions = {
 };
 
 /** Read a cookie value from an incoming request (App Router). */
-export function readCookieFromRequest(req: NextRequest, name: string): string | undefined {
-    return req.cookies.get(name)?.value;
+export async function readCookieFromRequest(name: string): Promise<string | undefined> {
+    return (await cookiesFn()).get(name)?.value;
 }
 
 /** Read a cookie value from the current request scope (App Router). */

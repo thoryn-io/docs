@@ -2,9 +2,9 @@ import { NextRequest } from "next/server";
 import { getOrCreateCsrfToken, verifyCsrf } from "@/lib/csrf";
 export const runtime = "nodejs"; // Edge also fine; avoid Winston on Edge
 
-export async function GET(req: NextRequest) {
+export async function GET() {
     // Send token to the client (store it and send back on POST)
-    const token = await getOrCreateCsrfToken(req);
+    const token = await getOrCreateCsrfToken();
     return Response.json({ csrfToken: token });
 }
 
