@@ -1,7 +1,6 @@
 import { getSession, setSessionValueWithThreadIndex, getSessionByThread } from "@/lib/session";
 import { logger } from "@/lib/logs";
 import { WebClient } from "@slack/web-api";
-import { NextRequest } from "next/server";
 
 const CHAT_THREAD = "CHAT_THREAD";
 const slack = new WebClient(process.env.SLACK_BOT_TOKEN);
@@ -11,8 +10,8 @@ export type ChatThreadData = {
     thread_ts: string;
 };
 
-async function initChatOrReconnect(req: NextRequest): Promise<ChatThreadData> {
-    const { sid, data } = await getSession(req, { autoCreate: true });
+async function initChatOrReconnect(): Promise<ChatThreadData> {
+    const { sid, data } = await getSession({ autoCreate: true });
 
     if (!sid) {
         logger.warn("A session ID is expected but not found");
@@ -39,15 +38,15 @@ async function initChatOrReconnect(req: NextRequest): Promise<ChatThreadData> {
         const channel = result.channel as string;
         const newChatThread: ChatThreadData = { channel, thread_ts };
 
-        await setSessionValueWithThreadIndex(req, CHAT_THREAD, newChatThread);
+        await setSessionValueWithThreadIndex(CHAT_THREAD, newChatThread);
         return newChatThread;
     }
 
     return chatThread;
 }
 
-export async function sendMessage(req: NextRequest, opts: { message: string }) {
-    const chatThread = await initChatOrReconnect(req);
+export async function sendMessage(opts: { message: string }) {
+    const chatThread = await initChatOrReconnect();
 
     const response = await slack.chat.postMessage({
         channel: chatThread.channel,

@@ -1,4 +1,3 @@
-import type { NextRequest } from "next/server";
 import { cookies as cookiesFn } from "next/headers";
 
 // Next 14/15 compatibility: cookies() may be sync or async

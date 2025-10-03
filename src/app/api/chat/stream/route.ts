@@ -11,7 +11,7 @@ type ChatMessage = {
 export const runtime = "nodejs"; // SSE doesn’t work on edge runtime
 
 export async function GET(req: NextRequest) {
-    const { sid } = await getSession(req); // ⚠️ must adjust getSession to accept NextRequest
+    const { sid } = await getSession(); // ⚠️ must adjust getSession to accept NextRequest
     if (!sid) {
         return new Response("Missing sid", { status: 400 });
     }

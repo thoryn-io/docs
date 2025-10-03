@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
         return new Response("Missing text", { status: 400 });
     }
 
-    await sendMessage(req, { message: text });
+    await sendMessage({ message: text });
 
     return new Response("ok", { status: 200 });
 }

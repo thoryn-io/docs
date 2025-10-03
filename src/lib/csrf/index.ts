@@ -3,7 +3,6 @@ import {setCookie, getCookie} from "@/lib/cookies";
 import {randomId} from "@/lib/crypto";
 import {getSession, mergeSession} from "@/lib/session";
 import {headers as headersFn} from "next/headers";
-import type {NextRequest} from "next/server";
 
 const CSRF_COOKIE = process.env.CSRF_COOKIE_NAME ?? "__host.csrf";
 const TOKEN_HEADER = process.env.CSRF_HEADER_NAME ?? "x-csrf-token";
@@ -39,7 +38,7 @@ export async function getOrCreateCsrfToken(): Promise<string> {
 }
 
 /** Verify CSRF for state-changing methods in App Router route handlers. */
-export async function verifyCsrf(req: NextRequest): Promise<{ ok: true } | { ok: false; reason: string }> {
+export async function verifyCsrf(): Promise<{ ok: true } | { ok: false; reason: string }> {
     const h = await getHeaders();
     const method = (h.get(":method") || h.get("x-http-method-override") || "").toUpperCase();
     const m = method || "GET";
